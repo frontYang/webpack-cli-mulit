@@ -45,8 +45,8 @@ module.exports = {
         const htmlwebpackPlugin = new HtmlwebpackPlugin({
           // title: `${basename}`,
           template: path.resolve(__dirname, '..', fs.existsSync(`${pathname}/${basename}.html`) ? `${pathname}/${basename}.html` : 'public/index.html'),
-          filename: filename === 'index' ? `index.html` : `${filename}/index.html`,
-          // filename: `${basename}.html`,
+          // filename: filename === 'index' ? `index.html` : `${filename}/index.html`,
+          filename: `${filename}.html`,
           inject: true,
           chunks: [basename],
           minify: false
