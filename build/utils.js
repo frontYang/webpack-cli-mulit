@@ -2,6 +2,7 @@ const path = require('path')
 const glob = require('glob')
 const fs = require('fs')
 const HtmlwebpackPlugin = require('html-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
   // 获取文件夹路径
@@ -34,23 +35,35 @@ module.exports = {
     glob.sync(globPath).forEach(function(entry) {
       const basename = path.basename(entry, path.extname(entry))
       const pathname = path.dirname(entry)
+      // if (pathname === 'common' || pathname === 'template') return
 
       if (!entry.match(/js\/lib\//)) {
         const htmlwebpackPlugin = new HtmlwebpackPlugin({
           // title: `${basename}`,
-          template: path.resolve(__dirname, '..', fs.existsSync(`${pathname}/${basename}.html`) ? `${pathname}/${basename}.html` : 'public/index.html'),
+          template: path.resolve(__dirname, '..', fs.existsSync(`${pathname}/${basename}.ejs`) ? `${pathname}/${basename}.ejs` : 'public/index.html'),
           filename: basename === 'index' ? `index.html` : `${basename}/index.html`,
           inject: true,
           chunks: [basename],
-          minify: {
+          minify: false
+          /* minify: {
             removeComments: true, // 移除注释
             collapseWhitespace: true, // 删除空格
             removeAttributeQuotes: true // 移除属性的引号
-          }
+          } */
         })
         htmlPlugins.push(htmlwebpackPlugin)
       }
     })
     return htmlPlugins
+  },
+
+  /* 复制静态文件 */
+  copyLib(fromPath, toPath) {
+    return new CopyWebpackPlugin([
+      {
+        from: path.resolve(__dirname, '..', fromPath),
+        to: path.resolve(__dirname, '..', toPath)
+      }
+    ])
   }
 }

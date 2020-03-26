@@ -1,0 +1,9 @@
+/src/mock/
+/src/assets/
+/node_modules/
+/dist
+/public
+*.html
+*.ejs
+*.md
+

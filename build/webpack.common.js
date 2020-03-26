@@ -6,6 +6,7 @@ const config = require('./config').common
 const utils = require('./utils')
 const publicPath = config.publicPath || '/'
 const entryJs = utils.getEntry('./src/views/**/*.js')
+const copyLib = utils.copyLib('src/lib', 'dist/lib')
 
 module.exports = merge({
   // 入口
@@ -58,7 +59,18 @@ module.exports = merge({
           outputPath: '/assets/',
           publicPath: '/assets/'
         }
+      },
+      {
+        test: /\.ejs$/,
+        loader: 'ejs-loader'
       }
     ]
-  }
+  },
+  externals: {
+    jquery: 'window.$',
+    Swiper: 'window.Swiper'
+  },
+  plugins: [
+    copyLib
+  ]
 }, config)

@@ -17,7 +17,7 @@ module.exports = merge(common, {
 
     // 监听html文件刷新
     before(app, server, compiler) {
-      const watchFiles = ['.html']
+      const watchFiles = ['.html', '.ejs']
       compiler.hooks.done.tap('done', () => {
         const changedFiles = Object.keys(compiler.watchFileSystem.watcher.mtimes)
 
