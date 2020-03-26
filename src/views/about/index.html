@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%= require('../../template/doc_head.html')() %>
+</head>
+<body>
+  <div class="contanier">
+    <div class='contanier-inner'>
+      <%= require('../../template/header.html')() %>
+      <div class="content">
+        <section class="section-banner">
+          <img src="https://dummyimage.com/1200x200&text=banner" alt="">
+        </section>
+        <section class="section-intro">
+          <div class="section-title">公司介绍</div>
+          <div class="section-body"></div>
+        </section>
+        <section class="section-culture">
+          <div class="section-title">企业文化</div>
+          <div class="section-body"></div>
+        </section>
+      </div>
+      <%= require('../../template/footer.html')() %>
+    </div>
+  </div>
+  <%= require('../../template/script.html')() %>
+</body>
+</html>

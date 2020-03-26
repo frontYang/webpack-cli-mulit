@@ -7,6 +7,7 @@ const utils = require('./utils')
 const publicPath = config.publicPath || '/'
 const entryJs = utils.getEntry('./src/views/**/*.js')
 const copyLib = utils.copyLib('src/lib', 'dist/lib')
+const copyAssets = utils.copyLib('src/assets', 'dist/assets')
 // const getHtmlPlugins = utils.getHtmlPlugins('src/views/**/*.js')
 
 module.exports = merge({
@@ -72,7 +73,8 @@ module.exports = merge({
     Swiper: 'window.Swiper'
   },
   plugins: [
-    copyLib
+    copyLib,
+    copyAssets
     // ...getHtmlPlugins
 
   ]

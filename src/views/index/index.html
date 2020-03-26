@@ -1,21 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-  <link rel="stylesheet" href="../../lib/swiper.4.5.0.min.css">
+  <%= require('../../template/doc_head.html')() %>
 </head>
 <body>
-  <%= require('../../template/header.html')() %>
+  <div class="contanier">
+    <div class='contanier-inner'>
+      <%= require('../../template/header.html')() %>
 
-  <div class="page page-home">
-    <a href="./list">list</a>
+      <div class="content">
+        <section class="section-banner">
+          <img src="https://dummyimage.com/1200x200&text=banner" alt="">
+        </section>
+        <section class="section section-swiper">
+          <div class="section-th"><span>Title</span></div>
+          <div class="swiper-container">
+            <div class="swiper-wrapper">
+              <% for( let index = 0; index < 3; index++ ) { %>
+                <div class="swiper-slide">
+                  <img src="https://dummyimage.com/1200x200&text=1" class="swiper-lazy" alt="">
+                  <div class="swiper-lazy-preloader"></div>
+                </div>
+              <% } %>
+            </div>
+            <!-- Add Arrows -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+          </div>
+        </section>
+        <%= require('../../template/section_plst.html')() %>
+      </div>
+      <%= require('../../template/footer.html')() %>
+    </div>
   </div>
-
-  <%= require('../../template/footer.html')() %>
-  <script src="lib/jquery.3.4.0.min.js"></script>
-  <script src="lib/swiper.4.5.0.min.js"></script>
+  <%= require('../../template/script.html')() %>
 </body>
 </html>
