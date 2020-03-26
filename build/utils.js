@@ -40,8 +40,9 @@ module.exports = {
       if (!entry.match(/js\/lib\//)) {
         const htmlwebpackPlugin = new HtmlwebpackPlugin({
           // title: `${basename}`,
-          template: path.resolve(__dirname, '..', fs.existsSync(`${pathname}/${basename}.ejs`) ? `${pathname}/${basename}.ejs` : 'public/index.html'),
-          filename: basename === 'index' ? `index.html` : `${basename}/index.html`,
+          template: path.resolve(__dirname, '..', fs.existsSync(`${pathname}/${basename}.html`) ? `${pathname}/${basename}.html` : 'public/index.html'),
+          // filename: basename === 'index' ? `index.html` : `${basename}/index.html`,
+          filename: `${basename}.html`,
           inject: true,
           chunks: [basename],
           minify: false

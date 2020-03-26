@@ -17,8 +17,8 @@ module.exports = merge(common, {
   // 输出
   output: {
     path: utils.resolve('./dist'),
-    filename: 'js/[name].js',
-    chunkFilename: 'js/[id].js'
+    filename: 'js/[name].min.js',
+    chunkFilename: 'js/[id].min.js'
   },
 
   // 优化
@@ -55,8 +55,8 @@ module.exports = merge(common, {
     // 提取css文件
     // DOC: https://github.com/webpack-contrib/mini-css-extract-plugin
     new MiniCssExtractPlugin({
-      filename: 'css/[name].css',
-      chunkFilename: 'css/[id].css'
+      filename: 'css/[name].min.css',
+      chunkFilename: 'css/[id].min.css'
     }),
 
     // 优化css 删除可能重复的CSS
