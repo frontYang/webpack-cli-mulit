@@ -7,6 +7,7 @@ const utils = require('./utils')
 const publicPath = config.publicPath || '/'
 const entryJs = utils.getEntry('./src/views/**/*.js')
 const copyLib = utils.copyLib('src/lib', 'dist/lib')
+// const getHtmlPlugins = utils.getHtmlPlugins('src/views/**/*.js')
 
 module.exports = merge({
   // 入口
@@ -61,7 +62,7 @@ module.exports = merge({
         }
       },
       {
-        test: /\.html$/,
+        test: /\**\/*.html$/,
         loader: 'ejs-loader'
       }
     ]
@@ -72,5 +73,7 @@ module.exports = merge({
   },
   plugins: [
     copyLib
+    // ...getHtmlPlugins
+
   ]
 }, config)

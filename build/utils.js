@@ -20,8 +20,11 @@ module.exports = {
     glob.sync(globPath).forEach(function(entry) {
       const basename = path.basename(entry, path.extname(entry))
       const pathname = path.dirname(entry)
+      const name = pathname.split('/')
+      const filename = name[name.length - 1]
+
       if (!entry.match(/js\/lib\//)) {
-        entries[basename] = pathname + '/' + basename
+        entries[filename] = pathname + '/' + basename
       }
     })
     return entries
@@ -35,14 +38,15 @@ module.exports = {
     glob.sync(globPath).forEach(function(entry) {
       const basename = path.basename(entry, path.extname(entry))
       const pathname = path.dirname(entry)
-      // if (pathname === 'common' || pathname === 'template') return
+      const name = pathname.split('/')
+      const filename = name[name.length - 1]
 
       if (!entry.match(/js\/lib\//)) {
         const htmlwebpackPlugin = new HtmlwebpackPlugin({
           // title: `${basename}`,
           template: path.resolve(__dirname, '..', fs.existsSync(`${pathname}/${basename}.html`) ? `${pathname}/${basename}.html` : 'public/index.html'),
-          // filename: basename === 'index' ? `index.html` : `${basename}/index.html`,
-          filename: `${basename}.html`,
+          filename: filename === 'index' ? `index.html` : `${filename}/index.html`,
+          // filename: `${basename}.html`,
           inject: true,
           chunks: [basename],
           minify: false
